@@ -1,0 +1,32 @@
+{
+  "name": "@emmathedeveloper/dupay-sdk",
+  "version": "1.0.0",
+  "description": "DUPay authentication SDK",
+  "author": {
+    "name": "emmathedeveloper",
+    "email": "emmathedeveloper@gmail.com"
+  },
+  "module": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "bun build --target=node ./src/index.ts --outfile=dist/index.js && bun run build:declaration",
+    "build:declaration": "tsc --project tsconfig.types.json"
+  },
+  "keywords": ["dupay" , "sdk" , "oauth"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmathedeveloper/dupay-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/emmathedeveloper/dupay-sdk/issues"
+  },
+  "homepage": "https://github.com/emmathedeveloper/dupay-sdk#readme",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
