@@ -25,7 +25,7 @@ class DUPayOAuth {
         Authorization: `Bearer ${token}`
       }
     });
-    const data = await response.json();
+    const { data } = await response.json();
     return data;
   }
 }

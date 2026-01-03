@@ -10,7 +10,7 @@ export default class DUPayOAuth {
     this.serverUrl = serverUrl || 'https://du-pay.onrender.com/api';
   }
 
-  async authorize(options?: { redirectUri: string }) {
+  async authorize(options?: { redirectUri: string }) : Promise<string> {
     
     const url = `${this.serverUrl}/authorization/generate-oauth-url?redirectUri=${options?.redirectUri}`;
     
@@ -24,7 +24,7 @@ export default class DUPayOAuth {
 
     const { data } = await response.json() as any;
     
-    return data
+    return data as string
   }
 
   async getUserInfo(token: string) {
@@ -37,7 +37,7 @@ export default class DUPayOAuth {
       },
     });
 
-    const data = await response.json();
+    const { data } = await response.json() as any;
     
     return data;
   }
