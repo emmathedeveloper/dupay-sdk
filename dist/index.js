@@ -25,6 +25,8 @@ class DUPayOAuth {
         Authorization: `Bearer ${token}`
       }
     });
+    if (!response.ok)
+      throw new Error("Something went wrong");
     const { data } = await response.json();
     return data;
   }
@@ -45,7 +47,24 @@ class DUPayWallet {
         Authorization: `Bearer ${this.apiKey}`
       }
     });
-    const data = await response.json();
+    if (!response.ok)
+      throw new Error("Something went wrong");
+    const { data } = await response.json();
+    return data;
+  }
+  async initiateTransfer(payload) {
+    const url = `${this.serverUrl}/integration/wallet/transfer`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${this.apiKey}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!response.ok)
+      throw new Error("Something went wrong");
+    const { data } = await response.json();
     return data;
   }
 }
