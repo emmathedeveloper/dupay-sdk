@@ -11,10 +11,9 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "bun build --target=node ./src/index.ts --outfile=dist/index.js && bun run build:declaration",
-    "build:declaration": "tsc --project tsconfig.types.json"
+    "build": "tsup src/index.ts --format cjs,esm --dts"
   },
-  "keywords": ["dupay" , "sdk" , "oauth"],
+  "keywords": ["dupay", "sdk", "oauth"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/emmathedeveloper/dupay-sdk.git"
@@ -28,5 +27,8 @@
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "tsup": "^8.5.1"
   }
 }

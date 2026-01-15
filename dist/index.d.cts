@@ -1,11 +1,21 @@
-export type TransferPayload = {
+declare class DUPayOAuth {
+    apiKey: string;
+    serverUrl: string;
+    constructor(apiKey: string, serverUrl?: string);
+    authorize(options?: {
+        redirectUri: string;
+    }): Promise<string>;
+    getUserInfo(token: string): Promise<any>;
+}
+
+type TransferPayload = {
     from: string;
     to: string;
     amount: number;
     narration?: string;
     pin: string;
 };
-export type TransferResponse = {
+type TransferResponse = {
     id: number;
     type: "credit" | "debit";
     createdAt: Date;
@@ -16,10 +26,12 @@ export type TransferResponse = {
     senderId: number;
     receiverId: number;
 };
-export default class DUPayWallet {
+declare class DUPayWallet {
     apiKey: string;
     serverUrl: string;
     constructor(apiKey: string, serverUrl?: string);
     getWalletInfo(userId: string): Promise<any>;
     initiateTransfer(payload: TransferPayload): Promise<TransferResponse>;
 }
+
+export { DUPayOAuth, DUPayWallet };
