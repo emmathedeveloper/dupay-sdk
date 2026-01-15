@@ -39,9 +39,13 @@ export default class DUPayWallet {
       },
     });
     
-    if(!response.ok) throw new Error("Something went wrong")
+    const result = await response.json();
+
+    if (!response.ok) throw new Error(result.message);
     
-    const {data} = await response.json() as any;
+    const { success, message, data } = result;
+    
+    if (!success) throw new Error(message);
     
     return data;
   }
@@ -59,9 +63,13 @@ export default class DUPayWallet {
       body: JSON.stringify(payload),
     });
     
-    if(!response.ok) throw new Error("Something went wrong")
+    const result = await response.json();
+
+    if (!response.ok) throw new Error(result.message);
     
-    const {data} = await response.json() as any;
+    const { success, message, data } = result;
+    
+    if (!success) throw new Error(message);
     
     return data as TransferResponse;
   }
