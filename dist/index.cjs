@@ -72,8 +72,10 @@ var DUPayWallet = class {
         Authorization: `Bearer ${this.apiKey}`
       }
     });
-    if (!response.ok) throw new Error("Something went wrong");
-    const { data } = await response.json();
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.message);
+    const { success, message, data } = result;
+    if (!success) throw new Error(message);
     return data;
   }
   async initiateTransfer(payload) {
@@ -86,8 +88,10 @@ var DUPayWallet = class {
       },
       body: JSON.stringify(payload)
     });
-    if (!response.ok) throw new Error("Something went wrong");
-    const { data } = await response.json();
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.message);
+    const { success, message, data } = result;
+    if (!success) throw new Error(message);
     return data;
   }
 };
